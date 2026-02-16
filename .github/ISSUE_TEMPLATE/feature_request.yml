@@ -1,0 +1,90 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for TCG Sandbox
+labels: ["enhancement", "triage"]
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Your ideas help shape the future of TCG Sandbox.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Need
+      description: What problem does this feature solve? What need does it address?
+      placeholder: |
+        As a game creator, I want to...
+        As a player, I find it difficult to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this to work?
+      placeholder: Add a button that allows users to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you thought of any alternative solutions or workarounds?
+      placeholder: I could manually... but it would be better if...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Feature Area
+      description: Which part of TCG Sandbox would this affect?
+      options:
+        - Game Creation
+        - Card/Set Management
+        - Deck Builder
+        - Game Lobby
+        - Gameplay Mechanics
+        - User Interface
+        - Performance
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (Your Opinion)
+      description: How important is this to you?
+      options:
+        - High - Significantly impacts usability
+        - Medium - Would be nice to have
+        - Low - Minor improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or Mockups
+      description: Any examples from other apps, mockups, or additional context?
+      placeholder: |
+        Similar to how [other app] does it...
+        Here's a rough sketch of what I'm thinking...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Acknowledgment
+      options:
+        - label: I have searched existing issues to make sure this hasn't been suggested already
+          required: true
+        - label: I understand this is a closed-source project and suggestions may not be implemented
+          required: true
+        - label: I understand that final product decisions rest with the maintainer
+          required: true

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: API Documentation
+    url: https://api.tcg-sandbox.com/docs
+    about: View the REST API documentation
+  - name: TCG Sandbox Website
+    url: https://tcg-sandbox.com
+    about: Visit the main TCG Sandbox platform
