@@ -1,0 +1,40 @@
+name: Mirror community issues
+
+# When any issue is opened in this community repo, create a corresponding
+# "[Community]" issue in the private tcgsandbox/tcg-sandbox repo, with a
+# back-reference link to the originating community issue.
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create mirrored issue in tcg-sandbox
+        env:
+          # A token with `issues: write` on tcgsandbox/tcg-sandbox.
+          # The default GITHUB_TOKEN cannot write to another repo, so this
+          # must be a PAT (or fine-grained token) stored as a repo secret.
+          GH_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: |
+          body="$(cat <<EOF
+          > 🔗 Mirrored from the community repo: ${ISSUE_URL}
+          > Originally opened by @${ISSUE_AUTHOR} in tcgsandbox/community#${ISSUE_NUMBER}
+
+          ---
+
+          ${ISSUE_BODY}
+          EOF
+          )"
+
+          gh issue create \
+            --repo tcgsandbox/tcg-sandbox \
+            --title "[Community] ${ISSUE_TITLE}" \
+            --body "${body}"
